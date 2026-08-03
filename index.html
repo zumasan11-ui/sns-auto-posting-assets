@@ -6,7 +6,7 @@
     <title>広告の勝因分析</title>
     <meta
       name="description"
-      content="広告の勝因分析は、広告分析コンテンツを管理し、ユーザー本人が認可したTikTokアカウントへ短尺動画を投稿するWebサービスです。"
+      content="広告の勝因分析 is a creator content management service for preparing, reviewing, and publishing short-form advertising analysis videos to the TikTok account authorized by the user."
     />
     <link rel="icon" type="image/png" href="./favicon.png" />
     <style>
@@ -161,9 +161,11 @@
       <section class="hero" aria-label="サービス概要">
         <h1>広告の勝因分析</h1>
         <p class="lead">
-          広告の勝因分析は、広告分析・ビジネスモデル分析の投稿素材を作成し、
-          ユーザー本人が管理するTikTokアカウントへ短尺動画を投稿するためのWebサービスです。
-          投稿はユーザー本人のTikTok認可に基づいて実行されます。
+          広告の勝因分析 is a creator content management service for preparing,
+          reviewing, and publishing short-form advertising analysis videos.
+          TikTok posts are sent only to the account authorized by the user through
+          TikTok Login Kit, after the user has confirmed the video, caption,
+          destination account, and posting settings.
         </p>
         <div class="official-url">Official website: https://zumasan11-ui.github.io/sns-auto-posting-tool/</div>
       </section>
@@ -173,11 +175,11 @@
         <div class="grid">
           <div class="panel">
             <h3>Content management</h3>
-            <p>ユーザーが作成した広告分析文、投稿キャプション、短尺動画素材を管理します。</p>
+            <p>Manage user-created advertising analysis text, captions, and short-form MP4 video assets before publishing.</p>
           </div>
           <div class="panel">
             <h3>TikTok posting</h3>
-            <p>ユーザー本人が認可したTikTokアカウントに、生成済みMP4を投稿します。</p>
+            <p>Publish approved MP4 videos to the TikTok account explicitly authorized by the user.</p>
           </div>
         </div>
       </section>
@@ -185,19 +187,34 @@
       <section aria-label="TikTok連携">
         <h2>TikTok Integration</h2>
         <ul>
-          <li>Login Kitでユーザー本人のTikTokアカウントを認証します。</li>
-          <li><code>user.info.basic</code> は、投稿先アカウントを確認するために使用します。</li>
-          <li><code>video.publish</code> は、Content Posting APIのDirect Postで本人アカウントへ投稿するために使用します。</li>
-          <li><code>video.upload</code> は、Content Posting APIのアップロード確認・下書き投稿フローを示すために使用します。</li>
-          <li>Redirect URIは、この公式サイトと同じドメイン配下の <code>/tiktok/callback/</code> です。</li>
+          <li>TikTok Login Kit is used to authenticate the user and connect the user's own TikTok account.</li>
+          <li><code>user.info.basic</code> is used to display and verify the destination TikTok account before posting.</li>
+          <li><code>video.publish</code> is used to publish a user-approved MP4 through Content Posting API Direct Post.</li>
+          <li><code>video.upload</code> is used for the Content Posting API upload flow when a draft or upload-only flow is required.</li>
+          <li>The Redirect URI is under this official website domain: <code>/tiktok/callback/</code>.</li>
         </ul>
       </section>
 
       <section aria-label="ユーザー管理">
         <h2>User Control</h2>
         <p>
-          本サービスは、ユーザー本人が明示的に承認した投稿のみを扱います。
-          第三者アカウントへの投稿、ユーザーの許可なしの投稿、またはTikTokのポリシーに反する投稿は行いません。
+          The service publishes only content that the user has created or reviewed.
+          Before publishing, the workflow shows the connected TikTok account,
+          selected video, caption, privacy level, comment/duet/stitch settings,
+          and posting status. It does not post to third-party accounts, publish
+          without user authorization, or intentionally publish content that
+          violates TikTok policies.
+        </p>
+      </section>
+
+      <section aria-label="保存データ">
+        <h2>Data Stored for TikTok Posting</h2>
+        <p>
+          The service stores the minimum data needed to operate the posting flow:
+          TikTok Open ID, creator username and nickname, access token, refresh token,
+          token expiration times, granted scopes, privacy level options, publish ID,
+          posting status, error code, error message, and log ID. Tokens are stored
+          securely and are used only for user-authorized TikTok posting and token refresh.
         </p>
       </section>
     </main>
