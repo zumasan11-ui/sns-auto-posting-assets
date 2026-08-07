@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>広告の勝因分析 TikTok Posting Workflow</title>
+    <meta
+      name="description"
+      content="TikTok Direct Post workflow for 広告の勝因分析, including account verification, video review, privacy settings, user confirmation, publishing, and status tracking."
+    />
+    <link rel="icon" type="image/png" href="../../favicon.png" />
+    <style>
+      :root {
+        --ink: #101828;
+        --muted: #667085;
+        --line: #d0d5dd;
+        --panel: #ffffff;
+        --soft: #f2f4f7;
+        --brand: #0f766e;
+        --brand-2: #14b8a6;
+        --danger: #b42318;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f8fafc;
+        color: var(--ink);
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      }
+      header,
+      main,
+      footer {
+        width: min(1120px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 28px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .brand img {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+      }
+      .brand strong {
+        display: block;
+        font-size: 22px;
+      }
+      .brand span,
+      p,
+      li {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      a {
+        color: var(--brand);
+        font-weight: 700;
+      }
+      h1 {
+        margin: 38px 0 12px;
+        font-size: clamp(36px, 5vw, 60px);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+      h2 {
+        margin: 0 0 16px;
+        font-size: 25px;
+      }
+      .hero {
+        padding: 28px 0 42px;
+      }
+      .lead {
+        max-width: 860px;
+        font-size: 18px;
+      }
+      .url-box {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: white;
+        color: #344054;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 14px;
+        word-break: break-all;
+      }
+      section {
+        border-top: 1px solid var(--line);
+        padding: 34px 0;
+      }
+      .workflow {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .step,
+      .dashboard {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+      }
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #ccfbf1;
+        color: #0f766e;
+        font-weight: 800;
+      }
+      .step h3 {
+        margin: 14px 0 6px;
+        font-size: 18px;
+      }
+      .dashboard {
+        margin-top: 18px;
+      }
+      .toolbar,
+      .row,
+      .setting {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .toolbar {
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+      }
+      .pill {
+        display: inline-flex;
+        border-radius: 999px;
+        padding: 5px 10px;
+        background: #ecfdf3;
+        color: #027a48;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .video-card {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 18px;
+      }
+      .video {
+        aspect-ratio: 9 / 16;
+        background: linear-gradient(160deg, #111827, #0f766e);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        color: white;
+        font-weight: 800;
+        text-align: center;
+        padding: 18px;
+      }
+      .setting {
+        border-top: 1px solid #eaecf0;
+        padding: 12px 0;
+      }
+      .setting strong {
+        min-width: 160px;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 16px;
+        border-radius: 8px;
+        background: var(--brand);
+        color: white;
+        font-weight: 800;
+      }
+      .button.secondary {
+        background: var(--soft);
+        color: var(--ink);
+      }
+      code {
+        border-radius: 4px;
+        background: #ecfdf3;
+        color: #047857;
+        padding: 2px 5px;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 28px 0 42px;
+        color: var(--muted);
+      }
+      @media (max-width: 860px) {
+        header,
+        .toolbar,
+        .video-card {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .workflow {
+          grid-template-columns: 1fr;
+        }
+        .video-card {
+          display: block;
+        }
+        .video {
+          width: min(260px, 100%);
+          margin-bottom: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img src="../../assets/app-icon.png" alt="広告の勝因分析 app icon" />
+        <div>
+          <strong>広告の勝因分析</strong>
+          <span>TikTok Direct Post workflow</span>
+        </div>
+      </div>
+      <a href="../../">Official Website</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>TikTok Posting Workflow</h1>
+        <p class="lead">
+          This page demonstrates how 広告の勝因分析 uses TikTok Login Kit and Content Posting API.
+          The user reviews the connected TikTok account, selected MP4, caption, privacy level,
+          interaction settings, and final confirmation before a Direct Post request is made.
+        </p>
+        <div class="url-box">https://zumasan11-ui.github.io/sns-auto-posting-tool/tiktok/posting-workflow/</div>
+      </section>
+
+      <section>
+        <h2>End-to-End Direct Post Flow</h2>
+        <div class="workflow">
+          <div class="step">
+            <span class="step-number">1</span>
+            <h3>Connect TikTok</h3>
+            <p>The user signs in with TikTok Login Kit and grants <code>user.info.basic</code>, <code>video.upload</code>, and <code>video.publish</code>.</p>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <h3>Verify Account</h3>
+            <p>The app displays the creator username and nickname so the user can confirm the destination account.</p>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <h3>Review Content</h3>
+            <p>The user reviews the selected MP4 video, caption, privacy level, and interaction settings before posting.</p>
+          </div>
+          <div class="step">
+            <span class="step-number">4</span>
+            <h3>Publish</h3>
+            <p>The app initializes Direct Post, uploads the MP4, and publishes only after the user confirms the final review screen.</p>
+          </div>
+          <div class="step">
+            <span class="step-number">5</span>
+            <h3>Track Status</h3>
+            <p>The app stores the publish ID and checks posting status, errors, and log IDs for troubleshooting.</p>
+          </div>
+          <div class="step">
+            <span class="step-number">6</span>
+            <h3>Secure Tokens</h3>
+            <p>Access and refresh tokens are stored securely and used only for authorized posting and refresh.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Sample Posting Review Screen</h2>
+        <div class="dashboard">
+          <div class="toolbar">
+            <div>
+              <strong>Post Review</strong>
+              <p>Connected TikTok account: <strong>@k_koukoku</strong></p>
+            </div>
+            <span class="pill">Ready for user confirmation</span>
+          </div>
+          <div class="video-card">
+            <div class="video">Selected MP4<br />ad-analysis-vol.mp4</div>
+            <div>
+              <div class="setting">
+                <strong>Caption</strong>
+                <span>勝ち広告を分析してみました vol. 12</span>
+              </div>
+              <div class="setting">
+                <strong>Privacy level</strong>
+                <span>PUBLIC_TO_EVERYONE</span>
+              </div>
+              <div class="setting">
+                <strong>Comments</strong>
+                <span>Enabled</span>
+              </div>
+              <div class="setting">
+                <strong>Duet / Stitch</strong>
+                <span>Disabled by user setting</span>
+              </div>
+              <div class="setting">
+                <strong>API response stored</strong>
+                <span>publish_id, status, error_code, error_message, log_id</span>
+              </div>
+              <p>
+                <span class="button secondary">Back</span>
+                <span class="button">Confirm and Publish to TikTok</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© 2026 広告の勝因分析</div>
+      <div>
+        <a href="../../terms-of-service/">Terms of Service</a> /
+        <a href="../../privacy-policy/">Privacy Policy</a>
+      </div>
+    </footer>
+  </body>
+</html>
